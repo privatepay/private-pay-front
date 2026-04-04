@@ -1,0 +1,23 @@
+{
+  "title": "Private Pay",
+  "welcome": "Welcome",
+  "slogan": "Pay and transfer with complete confidentiality. No trace of who sent it, no exposure of who received it.",
+  "orContinueWith": "Or continue with",
+  "login": {
+    "title": "Sign in to your account",
+    "subtitle": "Enter your email and password to access",
+    "emailPlaceholder": "name@example.com",
+    "passwordPlaceholder": "Password",
+    "submit": "Sign In",
+    "noAccount": "Don't have an account?",
+    "switchToCreate": "Create account"
+  },
+  "createAccount": {
+    "title": "Create an account",
+    "subtitle": "Enter your email below to create your account",
+    "emailPlaceholder": "name@example.com",
+    "submit": "Sign Up with Email",
+    "hasAccount": "Already have an account?",
+    "switchToLogin": "Sign in"
+  }
+}

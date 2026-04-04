@@ -1,0 +1,23 @@
+{
+  "title": "Private Pay",
+  "welcome": "Bem-vindo",
+  "slogan": "Pague e transfira com total sigilo. Sem rastros de quem enviou, sem exposição de quem recebeu.",
+  "orContinueWith": "Ou continue com",
+  "login": {
+    "title": "Entrar na conta",
+    "subtitle": "Digite seu e-mail e senha para acessar",
+    "emailPlaceholder": "nome@exemplo.com",
+    "passwordPlaceholder": "Senha",
+    "submit": "Entrar",
+    "noAccount": "Não tem uma conta?",
+    "switchToCreate": "Criar conta"
+  },
+  "createAccount": {
+    "title": "Criar uma conta",
+    "subtitle": "Digite seu e-mail abaixo para criar sua conta",
+    "emailPlaceholder": "nome@exemplo.com",
+    "submit": "Cadastrar com E-mail",
+    "hasAccount": "Já tem uma conta?",
+    "switchToLogin": "Entrar"
+  }
+}
