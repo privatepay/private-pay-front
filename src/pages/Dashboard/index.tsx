@@ -1,3 +1,14 @@
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+
 export default function Dashboard() {
-  return <>Meu dashboard</>;
+  const { logoutUser } = useAuth();
+
+  return (
+    <>
+      <Button className="w-full" onClick={() => logoutUser()}>
+        Logout
+      </Button>
+    </>
+  );
 }
