@@ -1,25 +1,43 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Authentication from "@/pages/Authentication";
 import Dashboard from "@/pages/Dashboard";
+import { useProfile } from "@/hooks/useAuth";
 
-function isAuthenticated() {
-  return !!localStorage.getItem("token");
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const { isLoading, isError } = useProfile();
+
+  if (isLoading) return null;
+  if (isError) return <Navigate to="/" />;
+  return <>{children}</>;
+}
+
+function PublicRoute({ children }: { children: React.ReactNode }) {
+  const { isLoading, data } = useProfile();
+
+  if (isLoading) return null;
+  if (data) return <Navigate to="/home" />;
+  return <>{children}</>;
 }
 
 export default function AllRoutes() {
-  console.log(isAuthenticated());
   return (
-    <>
-      <Routes>
-        {/* Login/Home */}
-        <Route
-          path="/"
-          element={
-            isAuthenticated() ? <Navigate to="/home" /> : <Authentication />
-          }
-        />
-        <Route path="/home" element={<Dashboard />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <PublicRoute>
+            <Authentication />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 }

@@ -14,10 +14,44 @@
   },
   "createAccount": {
     "title": "Criar uma conta",
-    "subtitle": "Digite seu e-mail abaixo para criar sua conta",
+    "subtitle": "Digite seus dados abaixo para criar sua conta",
+    "email": "E-mail",
     "emailPlaceholder": "nome@exemplo.com",
-    "submit": "Cadastrar com E-mail",
+    "firstName": "Nome",
+    "firstNamePlaceholder": "Digite seu nome...",
+    "lastName": "Sobrenome",
+    "lastNamePlaceholder": "Digite seu sobrenome...",
+    "document": "Documento",
+    "documentPlaceholder": "000.000.000-00",
+    "password": "Senha",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Cadastrar",
     "hasAccount": "Já tem uma conta?",
     "switchToLogin": "Entrar"
+  },
+  "validation": {
+    "firstNameMin": "Nome deve ter ao menos 2 caracteres",
+    "lastNameMin": "Sobrenome deve ter ao menos 2 caracteres",
+    "emailInvalid": "E-mail inválido",
+    "documentInvalid": "Documento inválido",
+    "passwordMin": "Mínimo 8 caracteres",
+    "passwordUppercase": "Precisa de letra maiúscula",
+    "passwordLowercase": "Precisa de letra minúscula",
+    "passwordSpecial": "Precisa de caractere especial"
+  },
+  "passwordStrength": {
+    "levels": {
+      "0": "",
+      "1": "Fraca",
+      "2": "Razoável",
+      "3": "Boa",
+      "4": "Forte"
+    },
+    "rules": {
+      "minLength": "Mínimo 8 caracteres",
+      "uppercase": "Letra maiúscula",
+      "lowercase": "Letra minúscula",
+      "special": "Caractere especial"
+    }
   }
 }

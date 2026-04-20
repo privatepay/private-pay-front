@@ -14,10 +14,44 @@
   },
   "createAccount": {
     "title": "Create an account",
-    "subtitle": "Enter your email below to create your account",
+    "subtitle": "Enter your details below to create your account",
+    "email": "Email",
     "emailPlaceholder": "name@example.com",
-    "submit": "Sign Up with Email",
+    "firstName": "First name",
+    "firstNamePlaceholder": "Enter your first name...",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "Enter your last name...",
+    "document": "Document",
+    "documentPlaceholder": "000.000.000-00",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "submit": "Sign Up",
     "hasAccount": "Already have an account?",
     "switchToLogin": "Sign in"
+  },
+  "validation": {
+    "firstNameMin": "First name must be at least 2 characters",
+    "lastNameMin": "Last name must be at least 2 characters",
+    "emailInvalid": "Invalid email",
+    "documentInvalid": "Invalid document",
+    "passwordMin": "Minimum 8 characters",
+    "passwordUppercase": "Requires an uppercase letter",
+    "passwordLowercase": "Requires a lowercase letter",
+    "passwordSpecial": "Requires a special character"
+  },
+  "passwordStrength": {
+    "levels": {
+      "0": "",
+      "1": "Weak",
+      "2": "Fair",
+      "3": "Good",
+      "4": "Strong"
+    },
+    "rules": {
+      "minLength": "At least 8 characters",
+      "uppercase": "Uppercase letter",
+      "lowercase": "Lowercase letter",
+      "special": "Special character"
+    }
   }
 }
