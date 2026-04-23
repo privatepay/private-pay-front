@@ -26,3 +26,11 @@ export interface IRegisterUser {
   documentType: DocumentType;
   role: Role;
 }
+
+export interface UserProfile {
+  sub: string;
+  email: string;
+  language: string;
+  iat: number;
+  exp: number;
+}

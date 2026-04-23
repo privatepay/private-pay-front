@@ -1,19 +1,18 @@
 import { api } from "@/api/api";
-import type { ILoginUser, IRegisterUser } from "@/types/AuthorizationType";
-
-export interface User {
-  id: string;
-  email: string;
-}
+import type {
+  ILoginUser,
+  IRegisterUser,
+  UserProfile,
+} from "@/types/AuthorizationType";
 
 export const authService = {
-  login: async (data: ILoginUser): Promise<User> => {
-    const response = await api.post<User>("/auth/login", data);
+  login: async (data: ILoginUser): Promise<ILoginUser> => {
+    const response = await api.post<ILoginUser>("/auth/login", data);
     return response.data;
   },
 
-  getProfile: async (): Promise<User> => {
-    const response = await api.get<User>("/auth/profile");
+  getProfile: async (): Promise<UserProfile> => {
+    const response = await api.get<UserProfile>("/auth/profile");
     return response.data;
   },
 
