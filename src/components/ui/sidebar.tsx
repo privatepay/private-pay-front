@@ -23,7 +23,7 @@ const SidebarInset = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-1 flex-col overflow-hidden", className)}
+    className={cn("flex flex-1 flex-col overflow-y-auto overflow-x-hidden", className)}
     {...props}
   />
 ))
