@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Authentication from "@/pages/Authentication";
 import Dashboard from "@/pages/Dashboard";
 import { useProfile } from "@/hooks/useAuth";
+import { SidebarProvider } from "@/hooks/useSidebar";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isLoading, isError } = useProfile();
@@ -34,7 +35,9 @@ export default function AllRoutes() {
         path="/home"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            <SidebarProvider>
+              <Dashboard />
+            </SidebarProvider>
           </ProtectedRoute>
         }
       />

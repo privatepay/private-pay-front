@@ -38,7 +38,7 @@ export function useLogin() {
   });
 
   return {
-    loginUser: loginMutation.mutate,
+    login: loginMutation.mutate,
     isPending: loginMutation.isPending,
     isError: loginMutation.isError,
     error: loginMutation.error,
@@ -59,7 +59,7 @@ export function useLogout() {
   });
 
   return {
-    logoutUser: logoutMutation.mutate,
+    logout: logoutMutation.mutate,
     isPending: logoutMutation.isPending,
     isError: logoutMutation.isError,
     error: logoutMutation.error,
@@ -85,7 +85,7 @@ export function useRegister() {
   });
 
   return {
-    registerUser: registerMutation.mutate,
+    register: registerMutation.mutate,
     isPending: registerMutation.isPending,
     isError: registerMutation.isError,
     error: registerMutation.error,
@@ -101,6 +101,7 @@ export function useAuth() {
   return {
     ...login,
     ...register,
+    user: profile.data,
     ...profile,
     ...logout,
   };

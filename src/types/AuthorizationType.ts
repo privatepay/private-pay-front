@@ -30,6 +30,8 @@ export interface IRegisterUser {
 export interface UserProfile {
   sub: string;
   email: string;
+  firstName: string;
+  lastName: string;
   language: string;
   iat: number;
   exp: number;

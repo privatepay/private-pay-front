@@ -2,11 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sidebar } from "@/components/Sidebar";
 import { Navbar } from "@/components/Navbar";
 import { SidebarInset } from "@/components/ui/sidebar";
-import {
-  ArrowDownLeft,
-  ArrowUpRight,
-  ArrowUpLeft,
-} from "lucide-react";
+import { ArrowDownLeft, ArrowUpRight, ArrowUpLeft } from "lucide-react";
 import type { Payment } from "@/components/PaymentTable";
 import { PaymentTable } from "@/components/PaymentTable";
 
@@ -52,10 +48,12 @@ const Dashboard = () => {
       <SidebarInset>
         <Navbar />
 
-        <main className="flex-1 p-6 pt-20">
+        <main className="flex-1 p-4 sm:p-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
+              Dashboard
+            </h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Visão geral das suas transações
             </p>
           </div>
@@ -64,16 +62,16 @@ const Dashboard = () => {
             {/* Card 1 - Valores Recebidos */}
             <Card className="bg-gradient-card border-border">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   Valores Recebidos
                 </CardTitle>
                 <ArrowDownLeft className="h-4 w-4 text-success" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-xl sm:text-2xl font-bold text-foreground">
                   R$ 84.320,00
                 </div>
-                <p className="flex items-center text-xs text-success">
+                <p className="flex items-center text-[10px] sm:text-xs text-success">
                   <ArrowUpRight className="mr-1 h-3 w-3" />
                   +12,4% este mês
                 </p>
@@ -83,18 +81,18 @@ const Dashboard = () => {
             {/* Card 2 - Valores Enviados */}
             <Card className="bg-gradient-card border-border">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   Valores Enviados
                 </CardTitle>
                 <ArrowUpRight className="h-4 w-4 text-destructive" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-xl sm:text-2xl font-bold text-foreground">
                   R$ 51.780,00
                 </div>
-                <p className="flex items-center text-xs text-destructive">
-                  <ArrowUpRight className="mr-1 h-3 w-3" />
-                  +8,1% este mês
+                <p className="flex items-center text-[10px] sm:text-xs text-destructive">
+                  <ArrowDownLeft className="mr-1 h-3 w-3" />
+                  -8,1% este mês
                 </p>
               </CardContent>
             </Card>
@@ -102,14 +100,16 @@ const Dashboard = () => {
             {/* Card 3 - Qtd. Transferências Recebidas */}
             <Card className="bg-gradient-card border-border">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   Transferências Recebidas
                 </CardTitle>
                 <ArrowDownLeft className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">1.248</div>
-                <p className="flex items-center text-xs text-muted-foreground">
+                <div className="text-xl sm:text-2xl font-bold text-foreground">
+                  1.248
+                </div>
+                <p className="flex items-center text-[10px] sm:text-xs text-muted-foreground">
                   transações este mês
                 </p>
               </CardContent>
@@ -118,14 +118,16 @@ const Dashboard = () => {
             {/* Card 4 - Qtd. Transferências Enviadas */}
             <Card className="bg-gradient-card border-border">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
+                <CardTitle className="text-xs sm:text-sm font-medium">
                   Transferências Enviadas
                 </CardTitle>
                 <ArrowUpLeft className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">873</div>
-                <p className="flex items-center text-xs text-muted-foreground">
+                <div className="text-xl sm:text-2xl font-bold text-foreground">
+                  873
+                </div>
+                <p className="flex items-center text-[10px] sm:text-xs text-muted-foreground">
                   transações este mês
                 </p>
               </CardContent>
@@ -133,7 +135,7 @@ const Dashboard = () => {
           </div>
 
           <div className="w-full">
-            <h2 className="mb-4 text-xl font-semibold text-foreground">
+            <h2 className="mb-4 text-lg sm:text-xl font-semibold text-foreground">
               Transações Recentes
             </h2>
             <PaymentTable payments={mockPayments} />
