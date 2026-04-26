@@ -1,24 +1,147 @@
-import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/useAuth";
-import { useUser } from "@/hooks/useUser";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Sidebar } from "@/components/Sidebar";
+import { Navbar } from "@/components/Navbar";
+import { SidebarInset } from "@/components/ui/sidebar";
+import {
+  ArrowDownLeft,
+  ArrowUpRight,
+  ArrowUpLeft,
+} from "lucide-react";
+import type { Payment } from "@/components/PaymentTable";
+import { PaymentTable } from "@/components/PaymentTable";
 
-export default function Dashboard() {
-  const { logoutUser, data: profile } = useAuth();
-  const { changeLanguage } = useUser(profile);
+const mockPayments: Payment[] = [
+  {
+    id: "PAY-001",
+    customer: "João Silva",
+    amount: 1250.0,
+    status: "approved",
+    method: "Cartão de Crédito",
+    date: "18/05/2025 14:32",
+  },
+  {
+    id: "PAY-002",
+    customer: "Maria Santos",
+    amount: 850.5,
+    status: "pending",
+    method: "PIX",
+    date: "18/05/2025 13:15",
+  },
+  {
+    id: "PAY-003",
+    customer: "Carlos Oliveira",
+    amount: 2100.0,
+    status: "approved",
+    method: "Boleto",
+    date: "18/05/2025 11:48",
+  },
+  {
+    id: "PAY-004",
+    customer: "Ana Costa",
+    amount: 450.0,
+    status: "failed",
+    method: "Cartão de Débito",
+    date: "18/05/2025 10:22",
+  },
+];
 
+const Dashboard = () => {
   return (
-    <>
-      <Button className="w-full" onClick={() => logoutUser()}>
-        Logout
-      </Button>
-      {profile && (
-        <Button
-          className="w-full"
-          onClick={() => changeLanguage(profile.language)}
-        >
-          Change Language
-        </Button>
-      )}
-    </>
+    <div className="flex min-h-screen w-full bg-background">
+      <Sidebar />
+      <SidebarInset>
+        <Navbar />
+
+        <main className="flex-1 p-6 pt-20">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
+            <p className="text-muted-foreground">
+              Visão geral das suas transações
+            </p>
+          </div>
+
+          <div className="mb-8 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Card 1 - Valores Recebidos */}
+            <Card className="bg-gradient-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  Valores Recebidos
+                </CardTitle>
+                <ArrowDownLeft className="h-4 w-4 text-success" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-foreground">
+                  R$ 84.320,00
+                </div>
+                <p className="flex items-center text-xs text-success">
+                  <ArrowUpRight className="mr-1 h-3 w-3" />
+                  +12,4% este mês
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Card 2 - Valores Enviados */}
+            <Card className="bg-gradient-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  Valores Enviados
+                </CardTitle>
+                <ArrowUpRight className="h-4 w-4 text-destructive" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-foreground">
+                  R$ 51.780,00
+                </div>
+                <p className="flex items-center text-xs text-destructive">
+                  <ArrowUpRight className="mr-1 h-3 w-3" />
+                  +8,1% este mês
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Card 3 - Qtd. Transferências Recebidas */}
+            <Card className="bg-gradient-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  Transferências Recebidas
+                </CardTitle>
+                <ArrowDownLeft className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-foreground">1.248</div>
+                <p className="flex items-center text-xs text-muted-foreground">
+                  transações este mês
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Card 4 - Qtd. Transferências Enviadas */}
+            <Card className="bg-gradient-card border-border">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">
+                  Transferências Enviadas
+                </CardTitle>
+                <ArrowUpLeft className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-foreground">873</div>
+                <p className="flex items-center text-xs text-muted-foreground">
+                  transações este mês
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="w-full">
+            <h2 className="mb-4 text-xl font-semibold text-foreground">
+              Transações Recentes
+            </h2>
+            <PaymentTable payments={mockPayments} />
+          </div>
+        </main>
+      </SidebarInset>
+    </div>
   );
-}
+};
+
+export default Dashboard;
