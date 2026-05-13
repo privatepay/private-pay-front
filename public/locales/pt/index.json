@@ -53,5 +53,36 @@
       "lowercase": "Letra minúscula",
       "special": "Caractere especial"
     }
+  },
+  "sidebar": {
+    "tagline": "Painel financeiro",
+    "nav": {
+      "dashboard": "Dashboard",
+      "transactions": "Transações"
+    }
+  },
+  "profile": {
+    "title": "Perfil",
+    "subtitle": "Gerencie suas informações pessoais",
+    "section": "Informações pessoais",
+    "codename": "Codename",
+    "codenameHint": "O codename é imutável e gerado automaticamente.",
+    "firstName": "Nome",
+    "firstNamePlaceholder": "Seu nome",
+    "lastName": "Sobrenome",
+    "lastNamePlaceholder": "Seu sobrenome",
+    "email": "Email",
+    "emailPlaceholder": "seu@email.com",
+    "newPassword": "Nova senha",
+    "passwordPlaceholder": "Deixe em branco para não alterar",
+    "language": "Idioma",
+    "save": "Salvar alterações",
+    "saving": "Salvando...",
+    "saveSuccess": "Salvo com sucesso!",
+    "validation": {
+      "required": "Obrigatório",
+      "emailInvalid": "Email inválido",
+      "passwordMin": "Mínimo 6 caracteres"
+    }
   }
 }

@@ -33,6 +33,15 @@ export interface UserProfile {
   firstName: string;
   lastName: string;
   language: string;
+  codename: string;
   iat: number;
   exp: number;
+}
+
+export interface UpdateProfileDto {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  password?: string;
+  language?: string;
 }
