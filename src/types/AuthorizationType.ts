@@ -25,6 +25,7 @@ export interface IRegisterUser {
   document: string;
   documentType: DocumentType;
   role: Role;
+  language: string;
 }
 
 export interface UserProfile {

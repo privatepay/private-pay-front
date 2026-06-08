@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -31,16 +31,29 @@ export default function Profile() {
     email: z.email(t("profile.validation.emailInvalid")),
     password: z
       .string()
-      .refine((val) => val === "" || val.length >= 8, t("validation.passwordMin"))
-      .refine((val) => val === "" || /[A-Z]/.test(val), t("validation.passwordUppercase"))
-      .refine((val) => val === "" || /[a-z]/.test(val), t("validation.passwordLowercase"))
-      .refine((val) => val === "" || /[^A-Za-z0-9]/.test(val), t("validation.passwordSpecial")),
+      .refine(
+        (val) => val === "" || val.length >= 8,
+        t("validation.passwordMin"),
+      )
+      .refine(
+        (val) => val === "" || /[A-Z]/.test(val),
+        t("validation.passwordUppercase"),
+      )
+      .refine(
+        (val) => val === "" || /[a-z]/.test(val),
+        t("validation.passwordLowercase"),
+      )
+      .refine(
+        (val) => val === "" || /[^A-Za-z0-9]/.test(val),
+        t("validation.passwordSpecial"),
+      ),
   });
 
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<ProfileForm>({
     resolver: zodResolver(schema),
@@ -51,6 +64,22 @@ export default function Profile() {
       password: "",
     },
   });
+
+  useEffect(() => {
+    if (profile) {
+      reset(
+        {
+          firstName: profile.firstName ?? "",
+          lastName: profile.lastName ?? "",
+          email: profile.email ?? "",
+          password: "",
+        },
+        { keepDirtyValues: true },
+      );
+    }
+  }, [profile, reset]);
+
+  console.log("profile:", profile);
 
   const password = useWatch({ control, name: "password" });
 

@@ -7,25 +7,13 @@ import type {
   IRegisterUser,
   UpdateProfileDto,
 } from "@/types/AuthorizationType";
-import {
-  getProfileCookie,
-  setProfileCookie,
-  removeProfileCookie,
-} from "@/utils/profileCookie";
 
 export function useProfile() {
-  const cached = getProfileCookie();
-
   return useQuery({
     queryKey: ["profile"],
-    queryFn: async () => {
-      const profile = await authService.getProfile();
-      setProfileCookie(profile);
-      return profile;
-    },
-    initialData: cached ?? undefined,
-    initialDataUpdatedAt: cached ? cached.iat * 1000 : undefined,
-    staleTime: cached ? (cached.exp - cached.iat) * 1000 : 0,
+    queryFn: () => authService.getProfile(),
+    staleTime: 0,
+    gcTime: 0,
     retry: false,
   });
 }
@@ -36,8 +24,8 @@ export function useLogin() {
 
   const loginMutation = useMutation({
     mutationFn: (credentials: ILoginUser) => authService.login(credentials),
-    onSuccess: (user) => {
-      queryClient.setQueryData(["profile"], user);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
       navigate("/home");
     },
   });
@@ -57,7 +45,6 @@ export function useLogout() {
   const logoutMutation = useMutation({
     mutationFn: () => authService.logout(),
     onSuccess: () => {
-      removeProfileCookie();
       queryClient.removeQueries({ queryKey: ["profile"] });
       navigate("/");
     },
@@ -83,8 +70,8 @@ export function useRegister() {
         password: userData.password,
       });
     },
-    onSuccess: (user) => {
-      queryClient.setQueryData(["profile"], user);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
       navigate("/home");
     },
   });
@@ -109,7 +96,7 @@ export function useUpdateProfile() {
       return userService.updateProfile(profile.sub, payload);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      queryClient.refetchQueries({ queryKey: ["profile"] });
     },
   });
 
