@@ -53,5 +53,36 @@
       "lowercase": "Lowercase letter",
       "special": "Special character"
     }
+  },
+  "sidebar": {
+    "tagline": "Financial dashboard",
+    "nav": {
+      "dashboard": "Dashboard",
+      "transactions": "Transactions"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "subtitle": "Manage your personal information",
+    "section": "Personal information",
+    "codename": "Codename",
+    "codenameHint": "The codename is immutable and automatically generated.",
+    "firstName": "First name",
+    "firstNamePlaceholder": "Your first name",
+    "lastName": "Last name",
+    "lastNamePlaceholder": "Your last name",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "newPassword": "New password",
+    "passwordPlaceholder": "Leave blank to keep unchanged",
+    "language": "Language",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "saveSuccess": "Saved successfully!",
+    "validation": {
+      "required": "Required",
+      "emailInvalid": "Invalid email",
+      "passwordMin": "Minimum 6 characters"
+    }
   }
 }

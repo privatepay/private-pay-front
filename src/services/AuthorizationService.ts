@@ -6,8 +6,8 @@ import type {
 } from "@/types/AuthorizationType";
 
 export const authService = {
-  login: async (data: ILoginUser): Promise<ILoginUser> => {
-    const response = await api.post<ILoginUser>("/auth/login", data);
+  login: async (data: ILoginUser): Promise<UserProfile> => {
+    const response = await api.post<UserProfile>("/auth/login", data);
     return response.data;
   },
 

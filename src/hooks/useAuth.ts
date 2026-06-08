@@ -1,26 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { authService } from "@/services/AuthorizationService";
-import type { ILoginUser, IRegisterUser } from "@/types/AuthorizationType";
-import {
-  getProfileCookie,
-  setProfileCookie,
-  removeProfileCookie,
-} from "@/utils/profileCookie";
+import { userService } from "@/services/UserService";
+import type {
+  ILoginUser,
+  IRegisterUser,
+  UpdateProfileDto,
+} from "@/types/AuthorizationType";
 
 export function useProfile() {
-  const cached = getProfileCookie();
-
   return useQuery({
     queryKey: ["profile"],
-    queryFn: async () => {
-      const profile = await authService.getProfile();
-      setProfileCookie(profile);
-      return profile;
-    },
-    initialData: cached ?? undefined,
-    initialDataUpdatedAt: cached ? cached.iat * 1000 : undefined,
-    staleTime: cached ? (cached.exp - cached.iat) * 1000 : 0,
+    queryFn: () => authService.getProfile(),
+    staleTime: 0,
+    gcTime: 0,
     retry: false,
   });
 }
@@ -31,14 +24,14 @@ export function useLogin() {
 
   const loginMutation = useMutation({
     mutationFn: (credentials: ILoginUser) => authService.login(credentials),
-    onSuccess: (user) => {
-      queryClient.setQueryData(["profile"], user);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
       navigate("/home");
     },
   });
 
   return {
-    login: loginMutation.mutate,
+    loginUser: loginMutation.mutate,
     isPending: loginMutation.isPending,
     isError: loginMutation.isError,
     error: loginMutation.error,
@@ -52,7 +45,6 @@ export function useLogout() {
   const logoutMutation = useMutation({
     mutationFn: () => authService.logout(),
     onSuccess: () => {
-      removeProfileCookie();
       queryClient.removeQueries({ queryKey: ["profile"] });
       navigate("/");
     },
@@ -78,17 +70,42 @@ export function useRegister() {
         password: userData.password,
       });
     },
-    onSuccess: (user) => {
-      queryClient.setQueryData(["profile"], user);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
       navigate("/home");
     },
   });
 
   return {
-    register: registerMutation.mutate,
+    registerUser: registerMutation.mutate,
     isPending: registerMutation.isPending,
     isError: registerMutation.isError,
     error: registerMutation.error,
+  };
+}
+
+export function useUpdateProfile() {
+  const queryClient = useQueryClient();
+  const profile = queryClient.getQueryData<{ sub: string }>(["profile"]);
+
+  const mutation = useMutation({
+    mutationFn: (data: UpdateProfileDto) => {
+      if (!profile?.sub) throw new Error("User not found");
+      const payload = { ...data };
+      if (!payload.password) delete payload.password;
+      return userService.updateProfile(profile.sub, payload);
+    },
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ["profile"] });
+    },
+  });
+
+  return {
+    updateProfile: mutation.mutate,
+    isPending: mutation.isPending,
+    isError: mutation.isError,
+    isSuccess: mutation.isSuccess,
+    error: mutation.error,
   };
 }
 

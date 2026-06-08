@@ -3,19 +3,20 @@ import {
   LayoutDashboard,
   CreditCard,
   ArrowRight,
-  ChevronLeft,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/useSidebar";
-
-const navItems = [
-  { label: "Dashboard", to: "/home", icon: LayoutDashboard },
-  { label: "Transações", to: "/home", icon: CreditCard },
-];
+import { useTranslation } from "react-i18next";
 
 export function Sidebar() {
-  const { isOpen, close, toggle } = useSidebar();
+  const { t } = useTranslation();
+  const { isOpen, close } = useSidebar();
   const location = useLocation();
+
+  const navItems = [
+    { label: t("sidebar.nav.dashboard"), to: "/home", icon: LayoutDashboard },
+    { label: t("sidebar.nav.transactions"), to: "/home", icon: CreditCard },
+  ];
 
   return (
     <>
@@ -57,7 +58,7 @@ export function Sidebar() {
                 Private Pay
               </p>
               <span className="whitespace-nowrap text-xs text-muted-foreground">
-                Painel financeiro
+                {t("sidebar.tagline")}
               </span>
             </div>
           </div>

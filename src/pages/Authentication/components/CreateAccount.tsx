@@ -39,7 +39,7 @@ interface CreateAccountProps {
 }
 
 export default function CreateAccount({ onSwitch }: CreateAccountProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { registerUser, isPending, isError, error } = useRegister();
 
   const schema = useMemo(() => createSchema(t), [t]);
@@ -61,7 +61,7 @@ export default function CreateAccount({ onSwitch }: CreateAccountProps) {
   const documentType = useWatch({ control, name: "documentType" });
 
   const onSubmit = (data: FormData) => {
-    registerUser({ ...data, role: Role.USER });
+    registerUser({ ...data, role: Role.USER, language: i18n.language });
   };
 
   return (
